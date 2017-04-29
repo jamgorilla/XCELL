@@ -83,24 +83,19 @@ class TableView {
     addNumToLastRow() {
 
         let val = 0;
-
         let start; 
+        let currentCol = this.currentCellLocation.col;
 
         for (let i = 0;i < 20; i++){
-            
-            start = { col: 0, row: i };
-            
+            start = { col: currentCol, row: i };    
             let temp = this.model.getValue(start);
-
             if (temp !== undefined){
             let num = parseInt(this.model.getValue(start))
             val += num;
-            
             };
         }
 
-        
-        const local = { col: 0, row: 20 };
+        const local = { col: currentCol, row: 20 };
         this.model.setValue(local, val);
     }
 
