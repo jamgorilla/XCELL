@@ -34,6 +34,7 @@ class TableView {
         this.formulaBarEl.focus();
     }
 
+
     renderTable() {
     	this.renderTableHeader();
     	this.renderTableBody();
@@ -73,8 +74,34 @@ class TableView {
     }
     
     attachEventHandlers() {
-    	this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
+    	this.sheetBodyEl.addEventListener('click', this.addNumToLastRow.bind(this));
+        this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
         this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
+        
+    }
+
+    addNumToLastRow() {
+
+        let val = 0;
+
+        let start; 
+
+        for (let i = 0;i < 20; i++){
+            
+            start = { col: 0, row: i };
+            
+            let temp = this.model.getValue(start);
+
+            if (temp !== undefined){
+            let num = parseInt(this.model.getValue(start))
+            val += num;
+            
+            };
+        }
+
+        
+        const local = { col: 0, row: 20 };
+        this.model.setValue(local, val);
     }
 
 
