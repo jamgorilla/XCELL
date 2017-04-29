@@ -179,8 +179,11 @@ class TableView {
 
     handleFormulaBarChange(evt) {
         const value = this.formulaBarEl.value;
+        let cellRow = this.currentCellLocation.row;
+        if (cellRow < 20){
         this.model.setValue(this.currentCellLocation, value);
         this.renderTableBody();
+      }
     }
 
     handleSheetClick(evt) {
