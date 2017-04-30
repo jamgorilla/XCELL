@@ -2,6 +2,7 @@ const fs = require('fs');
 const TableModel = require('../table-model');
 const TableView = require('../table-view');
 
+
 describe('table-view', () => {
 
   beforeEach(() => {
@@ -10,6 +11,31 @@ describe('table-view', () => {
     const html = fs.readFileSync(fixturePath, 'utf8');
     document.documentElement.innerHTML = html;  	
   });
+
+   describe('column addition functionality', () => {
+    it('makes changes TO the value of cells within a column', () => {
+      // set up the inital state
+      const numCols = 10;
+      const numRows = 21;
+      const model = new TableModel(numCols, numRows);
+      const view = new TableView(model);
+      view.init();
+
+      // inspect the intial state
+      let ths = document.querySelectorAll('TBODY TR');
+      expect(ths.length).toBe(numRows);
+
+
+      // simulate user action
+      model.setValue({col: 0, row: 1}, '123');
+      model.setValue({col: 0, row: 2}, '321');
+      view.addNumToLastRow();
+
+      // inspect the resulting state
+      let ted = model.getValue({col: 0, row: 20});
+      expect(ted).toBe(444);
+    });
+});
 
   describe('formula bar', () => {
     it('makes changes TO the value of the current cell', () => {
