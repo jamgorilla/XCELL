@@ -3,6 +3,7 @@
  		this.numCols = numCols;
  		this.numRows = numRows;
  		this.data = {};
+ 		
  	}
 
  	_getCellId(location) {
@@ -17,7 +18,7 @@
  		this.data[this._getCellId(location)] = value;
  	}
 
- 	
+
  }
 
  module.exports = TableModel;

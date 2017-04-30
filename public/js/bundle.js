@@ -56,6 +56,7 @@ module.exports = {
  		this.numCols = numCols;
  		this.numRows = numRows;
  		this.data = {};
+ 		
  	}
 
  	_getCellId(location) {
@@ -70,7 +71,7 @@ module.exports = {
  		this.data[this._getCellId(location)] = value;
  	}
 
- 	
+
  }
 
  module.exports = TableModel;
@@ -133,6 +134,10 @@ class TableView {
     	const fragment = document.createDocumentFragment();
     	for (let row = 0; row < this.model.numRows; row++) {
     		const tr = createTR();
+            if (row === this.model.numRows - 1){
+                 tr.className = 'green';               
+            }
+
     		for (let col = 0; col < this.model.numCols; col++ ) {
     			const position = {col: col, row: row};
     			const value = this.model.getValue(position);
