@@ -13,7 +13,8 @@
   "author": "James Murphy <jamesmurphy507@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-     "express": "^4.15.2"
+     "express": "^4.15.2",
+     "browserify": "^14.3.0"
   },
   "devDependencies": {
     "browserify": "^14.3.0",
